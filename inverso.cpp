@@ -1,0 +1,15 @@
+#include <stdio.h>
+void main ()
+{
+	float H, N, cont;
+	printf("Insira o numero N\n");
+	scanf("%f", &N);
+	H=0;
+	for(cont=1; cont<=N; cont++)
+		{
+		H=H+(1/cont);
+		printf("H=%.10f\n", H);
+		}
+	printf("O valor final de H e' %f.10", H);
+   printf("O valor de N foi %f", N);
+}
