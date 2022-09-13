@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+void main()
+{
+	struct a                      //matriz de estrutura HETEROGENEA
+	{
+		char nome[20], sexo[15];
+		int idade,area;
+	}pessoa[10];                  //numero maximo que vc podera digitar na estrutura
+
+	int i=0,j,cont=0,idademedia=0,idademax=0,cont1=0,cont2=0,cont3=0;
+	char nomemax[20],x[2];
+
+	printf("Deseja entrar com um candidato? (s/n): ");     //condiçao de entreda! IMPORTANTE q vc faça assim na prova
+	scanf("%s",&x);
+	while(strcmp(x,"s")==0 && i < 10)                     //laço que testa a condiçao de entrada e n deixa estrapolar o tamanho da estrutura
+	{
+		fflush(stdin);                                     //codigo que limpa o buffer do teclado. DEVE ser usado apos a instruçao de SCANF
+		printf("Entre com o nome do vestibulando: ");
+		gets(pessoa[i].nome);
+		printf("Entre com o sexo: ");
+		gets(pessoa[i].sexo);
+		printf("Entre com a idade: ");
+		scanf("%d",&pessoa[i].idade);
+		fflush(stdin);                                    //usado apos SCANF - Fique atento nesse detalhe
+		printf("Entre com a area (1- Exatas; 2-Biologicas; 3-Humanas): ");
+		scanf("%d",&pessoa[i].area);
+		fflush(stdin);                                    //Na prova n sei se sera necessario, mas aqui eh
+		clrscr();
+		i++;
+		printf("Deseja entrar com mais um candidato? (s/n): ");
+		scanf("%s",&x);
+	}
+	for(j=0; j<i; j++)                                  //laço que faz todos os pedidos do exercicio
+	{
+		if(strcmp(pessoa[j].sexo,"feminino")==0)         //Comparaçao de STRING so funciona com a diretiva #include <string.h>
+		{                                                //Eh importante que vc saiba fazer essa comparaçao. Isso sera cobrado na prova
+			cont++;
+		}
+		if(pessoa[j].idade > 0)
+		{
+			idademedia = idademedia + pessoa[j].idade;
+		}
+		if(pessoa[j].idade > idademax)
+		{
+		  idademax = pessoa[j].idade;
+		  strcpy(nomemax,pessoa[j].nome);            //Esse comando copia o que esta armazenado em pessoa[j], no caso o nome, para nomemax
+		}
+		if(pessoa[j].area == 1)
+		{
+			cont1++;
+		}
+		if(pessoa[j].area == 2)
+		{
+			cont2++;
+		}
+		if(pessoa[j].area == 3)
+		{
+			cont3++;
+		}
+	}
+	if(i == 0)                                   //Envia uma msg falando que nao houve ninguem
+	{
+		printf("Nao houveram candidatos!");
+	}
+	if(i != 0)                                   //EXTREMAMENTE importante essa condiçao p ver se existe algum dado digitado
+	{
+		printf("\nA porcentagem de mulheres:%.2f%% ",(cont*100.0)/(i));
+		printf("\nIdade media:%.2f ",(idademedia*1.0)/(i));
+		printf("\nA maior idade eh %d que eh do(a) %s",idademax,nomemax);
+	}
+	if(cont1 > cont2 && cont1 > cont3)
+	{
+		printf("\nExatas eh predominante!");
+	}
+	if(cont2 > cont1 && cont2 > cont3)
+	{
+		printf("\nBiologicas eh predominante!");
+	}
+	if(cont3> cont1 && cont3 > cont2)
+	{
+		printf("\nHumanas eh predominante!");
+	}
+}

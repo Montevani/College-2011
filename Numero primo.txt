@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+void main()
+{
+	int a,i=1,n1,n2,cont=0;
+	printf("Entre com 2 n°s para o intervalo: ");
+	scanf("%d %d",&n1,&n2);
+	while(n1<=n2)                   //varre o intervalo todo entre os 2 numeros digitados
+	{
+		a=n1;
+		i=1;
+		cont=0;
+		while(i<=a)                  //laço que testa se o numero sera primo
+		{
+			if(a%i==0)                //condiçao que testa se o numero eh divisivel por 1 e por ele msm
+			{
+				cont++;                //qdo CONT for igual a 2 o numero eh primo
+			}
+			i++;
+		}
+		if(cont==2)
+		{
+			printf("\n%d e´ primo!",a);
+		}
+		n1++;
+	}
+}
